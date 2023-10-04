@@ -85,7 +85,8 @@ DATABASES = {
         'NAME': 'django2',
         'USER': 'geek',
         'PASSWORD': 'pass',
-        'HOST': '',
+        # 'HOST': '', for local dev
+        'HOST': 'db', # for container
         'PORT': '3306',
     }
 }

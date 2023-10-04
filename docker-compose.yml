@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  web:
+    image: python:3.11
+    restart: always
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.12
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_DATABASE=django2
+      - MYSQL_USER=geek
+      - MYSQL_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+
